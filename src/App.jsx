@@ -1,7 +1,7 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { Inicio } from './Paginas/Inicio'
-import { Nosotros } from './paginas/Nosotros'
+import { Nosotros } from './Paginas/Nosotros'
 import { Productos } from './Paginas/Productos'
 import { Detalle } from './Paginas/Detalle'
 import {Navbar} from './Componentes/Navbar'
