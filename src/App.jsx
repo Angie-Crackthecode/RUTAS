@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import { Inicio } from './paginas/Inicio'
+import { Inicio } from './Paginas/Inicio'
 import { Nosotros } from './paginas/Nosotros'
 import { Productos } from './Paginas/Productos'
 import { Detalle } from './Paginas/Detalle'
