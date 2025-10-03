@@ -15,3 +15,6 @@ En el App:
 Link: Mantiene el estado, instantaneo, experiencia fluida, mejor rendimiento
 
 Se puede transformar una app movil de react a una app web
+
+npm run buil: El siitio se va a construir
+npm run dev: Los sitios se transforman en estatico pero temporalmente

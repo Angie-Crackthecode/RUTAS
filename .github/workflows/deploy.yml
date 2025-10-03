@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]  # o la rama que uses
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # o la que uses
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci
+      - name: Build
+        run: npm run build
+      # 👇 Para SPAs en GitHub Pages: copia index -> 404 (evita 404 al refrescar)
+      - name: SPA fallback (copy index.html to 404.html)
+        run: |
+          OUT_DIR=$(node -e "const p=require('./package.json');process.stdout.write((p?.vite?.build?.outDir)||'dist')") || echo "dist"
+          if [ -d "$OUT_DIR" ]; then cp "$OUT_DIR/index.html" "$OUT_DIR/404.html"; fi
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # CRA usa build; Vite usa dist (ajusta si fuera necesario)
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
