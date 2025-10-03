@@ -1,0 +1,17 @@
+path = indica la ruta de la pagina
+
+En el main:
+<BrowerRoute>
+    <App/>
+</BrowerRoute>
+
+En el App:
+<Routes>
+    <Route path = "/">
+    <Route path = "/Home">
+    <Route path = "/About">
+</Routes>
+
+Link: Mantiene el estado, instantaneo, experiencia fluida, mejor rendimiento
+
+Se puede transformar una app movil de react a una app web
