@@ -1,19 +1,132 @@
-import { NavLink, Link } from 'react-router-dom'
+import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 
 export function Navbar() {
-    return (
-        <nav className="nav">
-            <div className="nav-inner">
-                <Link to="/">
-                    <span className="brand-name">La casa de la oficina</span>
-                </Link>
+  const [isOpen, setIsOpen] = useState(false);
 
-                <div className="nav-links">
-                    <NavLink to="/" end className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Inicio</NavLink>
-                    <NavLink to="/nosotros" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Nosotros</NavLink>
-                    <NavLink to="/productos" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Productos</NavLink>
-                </div>
-            </div>
-        </nav>
-    )
+  return (
+    <nav className="bg-gradient-to-r from-[#001f4d] to-[#0b3d91] text-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* LOGO / NOMBRE */}
+          <Link
+            to="/"
+            className="text-2xl font-bold tracking-wide hover:text-blue-200 transition-colors duration-300"
+          >
+            La casa de la oficina
+          </Link>
+
+          {/* BOTÓN HAMBURGUESA (solo móvil) */}
+          <div className="flex md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white hover:text-blue-300 focus:outline-none"
+            >
+              {isOpen ? (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* LINKS - versión escritorio */}
+          <div className="hidden md:flex space-x-8">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `font-semibold hover:text-blue-200 transition-colors duration-300 ${
+                  isActive ? "text-blue-300 underline underline-offset-4" : ""
+                }`
+              }
+            >
+              Inicio
+            </NavLink>
+            <NavLink
+              to="/nosotros"
+              className={({ isActive }) =>
+                `font-semibold hover:text-blue-200 transition-colors duration-300 ${
+                  isActive ? "text-blue-300 underline underline-offset-4" : ""
+                }`
+              }
+            >
+              Nosotros
+            </NavLink>
+            <NavLink
+              to="/productos"
+              className={({ isActive }) =>
+                `font-semibold hover:text-blue-200 transition-colors duration-300 ${
+                  isActive ? "text-blue-300 underline underline-offset-4" : ""
+                }`
+              }
+            >
+              Productos
+            </NavLink>
+            <NavLink
+              to="/contacto"
+              className={({ isActive }) =>
+                `font-semibold hover:text-blue-200 transition-colors duration-300 ${
+                  isActive ? "text-blue-300 underline underline-offset-4" : ""
+                }`
+              }
+            >
+              Contacto
+            </NavLink>
+          </div>
+        </div>
+      </div>
+
+      {/* LINKS - versión móvil */}
+      {isOpen && (
+        <div className="md:hidden bg-[#0b3d91] px-4 pb-4 space-y-2">
+          <NavLink
+            to="/"
+            end
+            className="block py-2 border-b border-blue-400 hover:text-blue-200"
+            onClick={() => setIsOpen(false)}
+          >
+            Inicio
+          </NavLink>
+          <NavLink
+            to="/nosotros"
+            className="block py-2 border-b border-blue-400 hover:text-blue-200"
+            onClick={() => setIsOpen(false)}
+          >
+            Nosotros
+          </NavLink>
+          <NavLink
+            to="/productos"
+            className="block py-2 border-b border-blue-400 hover:text-blue-200"
+            onClick={() => setIsOpen(false)}
+          >
+            Productos
+          </NavLink>
+          <NavLink
+            to="/contacto"
+            className="block py-2 hover:text-blue-200"
+            onClick={() => setIsOpen(false)}
+          >
+            Contacto
+          </NavLink>
+        </div>
+      )}
+    </nav>
+  );
 }
