@@ -45,7 +45,7 @@
 /*        🌈 FONDO GENERAL (degradado azul–blanco)       */
 /* ===================================================== */
 body {
-  background: linear-gradient(180deg, #e0f2ff 0%, #ffffff 50%, #f0f8ff 100%);
+  background: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #1e3a8a;
   margin: 0;

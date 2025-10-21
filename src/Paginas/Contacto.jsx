@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTheme }  from "../Context/ThemeContext";
 
 export function FormContacto() {
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
   const [errores, setErrores] = useState({});
+  const {theme} = useTheme();
 
   //Patron para validar correo electronico o expresion regular para validar el correo
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -60,9 +62,10 @@ export function FormContacto() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Título del formulario */}
-      <h2>Formulario de Contacto</h2>
+    <div className={theme === "dark" ? "min-h-dvh bg-gray-900 text-white" : "min-h-dvh bg-white text-gray-900"}>
+      <form onSubmit={handleSubmit}>
+        {/* Título del formulario */}
+        <h2>Formulario de Contacto</h2>
 
       {/* Campo: Nombre */}
       <div>
@@ -107,5 +110,6 @@ export function FormContacto() {
       {/* Botón para enviar el formulario */}
       <button type="submit">Enviar</button>
     </form>
+    </div>
   );
 }
